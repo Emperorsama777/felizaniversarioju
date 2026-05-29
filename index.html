@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cartinha Especial 💙</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  overflow-x:hidden;
+}
+
+body{
+
+  min-height:100vh;
+
+  overflow-x:hidden;
+  overflow-y:auto;
+
+  font-family:'Poppins', sans-serif;
+
+  background:
+  linear-gradient(
+    rgba(190,230,255,0.35),
+    rgba(210,240,255,0.45)
+  ),
+
+  url('./imagens/fundo.jpeg')
+  center/cover no-repeat;
+
+  background-color:#dff4ff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+
+  padding:20px;
+}
+
+body::-webkit-scrollbar{
+  width:0;
+}
+
+/* MENSAGEM */
+
+.message{
+
+  position:relative;
+  z-index:5;
+
+  width:min(92%,500px);
+
+  padding:25px;
+
+  border-radius:30px;
+
+  background:rgba(255,255,255,0.12);
+
+  backdrop-filter:blur(10px);
+
+  border:1px solid rgba(255,255,255,0.18);
+
+  text-align:center;
+
+  color:#35536b;
+
+  animation:fade 1.5s ease;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.15);
+
+  margin-top:90px;
+  margin-bottom:40px;
+}
+    .message p{
+
+      font-size:1.1rem;
+
+      line-height:2;
+
+      font-weight:300;
+
+      color:#ffffff;
+
+      text-shadow:
+      0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .highlight{
+      color:#6bbaf7;
+      font-weight:600;
+    }
+
+/* ELEMENTOS */
+
+.floating{
+
+  position:absolute;
+
+  user-select:none;
+  pointer-events:none;
+
+  z-index:2;
+
+  animation-timing-function:linear;
+  animation-iteration-count:infinite;
+}
+
+.cat{
+  font-size:60px;
+  animation:moveRight 18s linear infinite;
+}
+
+.flower{
+  font-size:50px;
+  animation:moveLeft 22s linear infinite;
+}
+
+.minecraft{
+  font-size:45px;
+  animation:float 8s ease-in-out infinite;
+}
+
+.cat1{
+  top:10%;
+  left:-10%;
+}
+
+.cat2{
+  bottom:12%;
+  right:-10%;
+  animation-duration:20s;
+}
+
+.flower1{
+  top:70%;
+  left:-10%;
+}
+
+.flower2{
+  top:15%;
+  right:-10%;
+  animation-duration:24s;
+}
+
+.mc1{
+  top:20%;
+  left:12%;
+}
+
+.mc2{
+  bottom:18%;
+  right:15%;
+  animation-delay:2s;
+}
+
+.mc3{
+  top:45%;
+  right:8%;
+  animation-delay:1s;
+}
+
+/* HELLO KITTY */
+
+.hello-kitty{
+
+  position:absolute;
+
+  font-size:70px;
+
+  opacity:0.16;
+
+  animation:float 6s ease-in-out infinite;
+
+  z-index:1;
+}
+
+.hk1{
+  top:5%;
+  left:5%;
+}
+
+.hk2{
+  bottom:5%;
+  right:5%;
+  animation-delay:2s;
+}
+
+.hk3{
+  top:40%;
+  left:80%;
+  animation-delay:1s;
+}
+
+/* BRILHOS */
+
+.sparkle{
+
+  position:absolute;
+
+  color:rgba(255,255,255,0.8);
+
+  font-size:20px;
+
+  animation:sparkle 6s linear infinite;
+
+  z-index:1;
+}
+
+/* CONFETES */
+
+.confetti{
+
+  position:fixed;
+
+  width:12px;
+  height:12px;
+
+  top:-20px;
+
+  z-index:999;
+
+  animation:confettiFall linear forwards;
+
+  border-radius:3px;
+}
+
+/* CARTINHA */
+
+.start-screen{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(180,220,255,0.35);
+
+  backdrop-filter:blur(6px);
+}
+
+.letter-card{
+
+  width:320px;
+
+  padding:40px 25px;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #eef9ff,
+    #d8f1ff
+  );
+
+  text-align:center;
+
+  cursor:pointer;
+
+  box-shadow:
+  0 15px 35px rgba(126,200,255,0.25);
+
+  transition:0.35s ease;
+
+  border:4px solid #b8e7ff;
+
+  animation:float 4s ease-in-out infinite;
+}
+
+.letter-card:hover{
+  transform:scale(1.05);
+}
+
+.envelope{
+  font-size:80px;
+  margin-bottom:15px;
+}
+
+.letter-card h2{
+
+  color:#6bbcff;
+
+  margin-bottom:10px;
+
+  font-size:2rem;
+}
+
+.letter-card p{
+  color:#5b7388;
+  font-size:1rem;
+}
+
+/* GAME */
+
+.game-ui{
+
+  position:fixed;
+
+  top:15px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  z-index:30;
+
+  text-align:center;
+
+  color:white;
+
+  display:none;
+
+  width:100%;
+}
+
+.game-ui h2{
+
+  font-size:1.5rem;
+
+  text-shadow:
+  0 3px 10px rgba(0,0,0,0.3);
+}
+
+.score{
+
+  margin-top:10px;
+
+  font-size:1.2rem;
+
+  font-weight:bold;
+}
+
+.game-area{
+
+  position:fixed;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+  z-index:1;
+}
+
+.fruit{
+
+  position:absolute;
+
+  font-size:50px;
+
+  user-select:none;
+
+  cursor:pointer;
+
+  pointer-events:auto;
+
+  z-index:25;
+
+  animation:fruitUp linear forwards;
+}
+
+.slice{
+  animation:sliceEffect 0.4s ease forwards !important;
+}
+
+/* ANIMAÇÕES */
+
+@keyframes fade{
+
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes moveRight{
+
+  from{
+    transform:translateX(-150px);
+  }
+
+  to{
+    transform:
+    translateX(calc(100vw + 200px));
+  }
+}
+
+@keyframes moveLeft{
+
+  from{
+    transform:
+    translateX(calc(100vw + 200px));
+  }
+
+  to{
+    transform:translateX(-200px);
+  }
+}
+
+@keyframes float{
+
+  0%,100%{
+    transform:
+    translateY(0px)
+    rotate(0deg);
+  }
+
+  50%{
+    transform:
+    translateY(-20px)
+    rotate(8deg);
+  }
+}
+
+@keyframes sparkle{
+
+  from{
+    transform:
+    translateY(100vh)
+    scale(0.4);
+
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  to{
+    transform:
+    translateY(-120px)
+    scale(1.3);
+
+    opacity:0;
+  }
+}
+
+@keyframes confettiFall{
+
+  to{
+    transform:
+    translateY(110vh)
+    rotate(720deg);
+
+    opacity:0;
+  }
+}
+
+@keyframes fruitUp{
+
+  0%{
+    transform:
+    translateY(0)
+    rotate(0deg);
+  }
+
+  100%{
+    transform:
+    translateY(-120vh)
+    rotate(360deg);
+  }
+}
+
+@keyframes sliceEffect{
+
+  to{
+    transform:
+    scale(1.8)
+    rotate(120deg);
+
+    opacity:0;
+  }
+}
+
+@keyframes shake{
+
+  from{
+    transform:
+    rotate(-10deg)
+    scale(1);
+  }
+
+  to{
+    transform:
+    rotate(10deg)
+    scale(1.1);
+  }
+}
+
+/* RESPONSIVO */
+
+@media(max-width:768px){
+
+  body{
+    padding:15px;
+  }
+
+  .message{
+
+    width:100%;
+
+    max-width:100%;
+
+    padding:22px 18px;
+
+    border-radius:25px;
+  }
+
+  .message h1{
+
+    font-size:2rem;
+
+    line-height:1.2;
+
+    margin-bottom:18px;
+  }
+
+  .message p{
+
+    font-size:0.98rem;
+
+    line-height:1.9;
+  }
+
+  .letter-card{
+
+    width:92%;
+
+    max-width:320px;
+
+    padding:35px 20px;
+  }
+
+  .letter-card h2{
+    font-size:1.7rem;
+  }
+
+  .letter-card p{
+    font-size:0.95rem;
+  }
+
+  .cat{
+    font-size:34px;
+  }
+
+  .flower{
+    font-size:30px;
+  }
+
+  .minecraft{
+    font-size:28px;
+  }
+
+  .fruit{
+    font-size:38px;
+  }
+
+  .game-ui h2{
+    font-size:1.2rem;
+  }
+
+  .score{
+    font-size:1rem;
+  }
+
+  .hello-kitty{
+    font-size:45px;
+    opacity:0.12;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hello-kitty hk1">🩵</div>
+<div class="hello-kitty hk2">🐱</div>
+<div class="hello-kitty hk3">🦌</div>
+
+<div class="floating cat cat1">🐱</div>
+<div class="floating cat cat2">🔔</div>
+
+<div class="floating flower flower1">🌻</div>
+<div class="floating flower flower2">🌷</div>
+
+<div class="floating minecraft mc1">⛏️</div>
+<div class="floating minecraft mc2">🔔</div>
+<div class="floating minecraft mc3">🧱</div>
+
+<div class="start-screen" id="startScreen">
+
+  <div class="letter-card" onclick="abrirCarta()">
+
+    <div class="envelope">💌🩵</div>
+
+    <h2>Cartinha Especial</h2>
+
+    <p>
+      Clique para abrir sua cartinha
+    </p>
+
+  </div>
+
+</div>
+
+<div class="message" id="message">
+
+<h1>Feliz Aniversário Ju!! ✨</h1>
+
+<p>
+
+Hoje o mundo parece muito mais very cute! 💙
+
+<br><br>
+
+Que seu novo ano seja cheio de
+<span class="highlight">
+aventuras incríveis
+</span>,
+momentos felizes e sonhos realizados.
+
+Que nunca faltem
+<span class="highlight">
+lírios e girassóis
+</span>
+no seu caminho,
+<span class="highlight">
+gatinhos fofinhos
+</span>
+para aquecer o coração
+e criatividade para construir
+um telhado ou um estábulo ⛏️✨
+
+<br><br>
+
+Parabéns, você merece tudo de bom,
+todos os diamantes e netherites! 🌻🐱💎
+
+</p>
+
+</div>
+
+<div class="game-ui" id="gameUI">
+
+<h2>💎 Toque nos Diamantes! 💎</h2>
+
+<div class="score">
+Pontos:
+<span id="score">0</span>
+</div>
+
+</div>
+
+<div class="game-area" id="gameArea"></div>
+
+<script>
+
+/* BRILHOS */
+
+function createSparkle(){
+
+  const sparkle =
+  document.createElement('div');
+
+  sparkle.classList.add('sparkle');
+
+  const icons = [
+    '💎',
+    '✨',
+    '⭐',
+    '🩵'
+  ];
+
+  sparkle.innerHTML =
+  icons[Math.floor(Math.random() * icons.length)];
+
+  sparkle.style.left =
+  Math.random() * window.innerWidth + 'px';
+
+  sparkle.style.animationDuration =
+  (Math.random() * 4 + 4) + 's';
+
+  sparkle.style.fontSize =
+  (Math.random() * 15 + 15) + 'px';
+
+  document.body.appendChild(sparkle);
+
+  setTimeout(()=>{
+    sparkle.remove();
+  },7000);
+}
+
+setInterval(createSparkle,350);
+
+/* CONFETES */
+
+function createConfetti(){
+
+  const colors = [
+    '#7ec8ff',
+    '#b8e7ff',
+    '#ffffff',
+    '#96fae9',
+    '#6bbcff'
+  ];
+
+  for(let i=0;i<120;i++){
+
+    const confetti =
+    document.createElement('div');
+
+    confetti.classList.add('confetti');
+
+    confetti.style.left =
+    Math.random() * window.innerWidth + 'px';
+
+    confetti.style.background =
+    colors[Math.floor(Math.random() * colors.length)];
+
+    confetti.style.animationDuration =
+    (Math.random() * 3 + 3) + 's';
+
+    document.body.appendChild(confetti);
+
+    setTimeout(()=>{
+      confetti.remove();
+    },7000);
+  }
+}
+
+/* GAME */
+
+let score = 0;
+
+function startGame(){
+
+  const gameUI =
+  document.getElementById('gameUI');
+
+  const scoreText =
+  document.getElementById('score');
+
+  const gameArea =
+  document.getElementById('gameArea');
+
+  gameUI.style.display = 'block';
+
+  setInterval(()=>{
+
+    const fruit =
+    document.createElement('div');
+
+    fruit.classList.add('fruit');
+
+    const items = [
+      '💎',
+      '💎',
+      '💎',
+      '🌸',
+      '⭐',
+      '🐱',
+      '🧱'
+    ];
+
+    fruit.innerHTML =
+    items[Math.floor(Math.random() * items.length)];
+
+    fruit.style.left =
+    Math.random() *
+    (window.innerWidth - 60) + 'px';
+
+    fruit.style.bottom = '-60px';
+
+    fruit.style.animationDuration =
+    (Math.random() * 2 + 3) + 's';
+
+    gameArea.appendChild(fruit);
+
+    fruit.addEventListener('click', ()=>{
+
+      const item = fruit.innerHTML;
+
+      if(item === '💎'){
+
+        score++;
+
+        scoreText.innerHTML = score;
+
+        fruit.classList.add('slice');
+
+        createConfetti();
+
+        setTimeout(()=>{
+          fruit.remove();
+        },400);
+
+        if(score === 10){
+
+          alert(
+            '🎉 Você venceu o mini game!! 💎✨'
+          );
+        }
+
+      } else {
+
+        showLoseScreen();
+
+      }
+
+    });
+
+    setTimeout(()=>{
+      fruit.remove();
+    },5000);
+
+  },900);
+
+}
+
+/* ABRIR CARTA */
+
+function abrirCarta(){
+
+  createConfetti();
+
+  const screen =
+  document.getElementById('startScreen');
+
+  const message =
+  document.getElementById('message');
+
+  screen.style.opacity = '0';
+  screen.style.transition = '1s';
+
+  setTimeout(()=>{
+
+    screen.style.display = 'none';
+
+    message.style.display = 'block';
+
+    startGame();
+
+    setTimeout(()=>{
+
+      message.style.opacity = '1';
+      message.style.transition = '1.5s';
+
+    },100);
+
+  },900);
+}
+
+/* DERROTA */
+
+function showLoseScreen(){
+
+  const lose =
+  document.createElement('div');
+
+  lose.style.position = 'fixed';
+  lose.style.inset = '0';
+
+  lose.style.background =
+  'rgba(0,0,0,0.75)';
+
+  lose.style.backdropFilter =
+  'blur(6px)';
+
+  lose.style.zIndex = '9999';
+
+  lose.style.display = 'flex';
+
+  lose.style.flexDirection = 'column';
+
+  lose.style.alignItems = 'center';
+
+  lose.style.justifyContent = 'center';
+
+  lose.style.color = 'white';
+
+  lose.style.fontFamily = 'Poppins';
+
+  lose.innerHTML = `
+  
+  <div style="
+    background:rgba(255,255,255,0.1);
+    padding:35px;
+    border-radius:30px;
+    text-align:center;
+    width:min(90%,350px);
+    border:1px solid rgba(255,255,255,0.2);
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  ">
+
+    <div style="
+      font-size:80px;
+      margin-bottom:15px;
+      animation:shake 0.5s infinite alternate;
+    ">
+      🔔
+    </div>
+
+    <h1 style="
+      margin-bottom:15px;
+      color:#ffb3b3;
+    ">
+      Você Perdeu!
+    </h1>
+
+    <p style="
+      margin-bottom:25px;
+      line-height:1.7;
+    ">
+      Você clicou no item errado 😿
+    </p>
+
+    <button onclick="location.reload()" style="
+      padding:14px 24px;
+      border:none;
+      border-radius:15px;
+      background:#7ec8ff;
+      color:white;
+      font-size:1rem;
+      cursor:pointer;
+      font-weight:bold;
+    ">
+      Jogar Novamente
+    </button>
+
+  </div>
+  `;
+
+  document.body.appendChild(lose);
+
+}
+
+</script>
+
+</body>
+</html>
+
